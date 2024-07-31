@@ -1,0 +1,32 @@
+.PropertyUpload {
+    color: rgb(88, 88, 88);
+}
+
+.UploadMain {
+    width: 90vw;
+    height: 30vmin;
+    max-height: 200px;
+    background-color: rgb(39, 38, 38);
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 4%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.286);
+    position: relative;
+
+}
+
+.UploadMain h4 {
+    font-weight: 300;
+}
+
+@media (max-width: 600px) {
+    .UploadMain {
+        font-size: 0.6rem;
+    }
+}

@@ -1,0 +1,258 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.main {
+    flex: 1;
+}
+
+.hero-section,
+.featured-section,
+.services-section {
+    width: 100%;
+    padding: 3rem 0;
+    position: relative;
+}
+
+.hero-section .container-inner,
+.featured-section .container-inner,
+.services-section .container-inner {
+    padding: 0 1rem;
+}
+
+.featured-section .container-inner,
+.services-section .container-inner {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.services ,.featured-properties{
+    margin-top: 4%;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+.service1,
+.service2,
+.service3 {
+    height: 90%;
+    width: 30%;
+    background-color: white;
+    border: 1px solid rgba(143, 143, 143, 0.443);
+    border-radius: 10px;
+}
+
+.serviceText {
+    margin-left: 6.5%;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.serviceDescription {
+    margin-left: 6.5%;
+    margin-right: 6.5%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-weight: 400;
+    font-size: 1rem;
+    height: 12vh;
+}
+
+
+.serviceIcon {
+    background-color: transparent;
+    background-position: center;
+    background-size: 70%;
+    width: 7vmin;
+    height: 7vmin;
+    margin: 5%;
+    background-repeat: no-repeat;
+}
+
+.service1 .serviceIcon {
+    background-image: url(../../icons/house.svg);
+}
+
+.service2 .serviceIcon {
+    background-image: url(../../icons/upload.svg);
+}
+
+.service3 .serviceIcon {
+    background-image: url(../../icons/currency-dollar.svg);
+}
+
+.hero-section .container-inner {
+    display: flex;
+}
+
+.hero-content {
+    display: grid;
+    gap: 1.5rem;
+}
+
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 50%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.221);
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero-description {
+    max-width: 37.5rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 3%;
+}
+
+.hero-image {
+    min-width: 300px;
+    border-radius: 0.375rem;
+    height: 350px;
+    width: 50%;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    background-image: url('../../images/backdropimages/backdrop1.jpg');
+    background-size:cover;
+    position: absolute;
+    background-position: 0;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-repeat: no-repeat;   
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    padding: 0 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.primary-button {
+    background-color: black;
+    color: #fff;
+}
+
+.primary-button:hover {
+    background-color: #1e1e1e;
+}
+
+.secondary-button {
+    background-color: #e5e7eb;
+}
+
+.secondary-button:hover {
+    background-color: #d4d6da;
+}
+
+.featured-section,
+.services-section {
+    background-color: white;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.section-description {
+    max-width: 30rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+    .hero-section::before {
+        background-position: 40%;
+        background-size: cover;
+        left: 0px;
+    }
+
+    .hero-text {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .services{
+        height: auto;
+    }
+}
+
+
+.featured-properties-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;
+
+}
+
+.arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.right-arrow {
+    width: 3vmax;
+    height: 3vmax;
+    background-image: url('../../icons/arrow-right.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.left-arrow {
+    width: 3vmax;
+    height: 3vmax;
+    background-image: url('../../icons/arrow-left.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.featured-properties {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+}

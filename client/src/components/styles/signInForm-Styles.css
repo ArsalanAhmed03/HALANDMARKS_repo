@@ -1,0 +1,119 @@
+
+.signinbody {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.499);
+    backdrop-filter: blur(2px);
+    transition: all 0.2s ease-in;
+}
+
+.signin-box {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    width: 80vmin;
+    height: 80vmax;
+    border-radius: 10px;
+    padding: 5%;
+}
+
+.cross {
+    position: absolute;
+    background-color: transparent;
+    width: 2vmax;
+    height: 2vmax;
+    top: 0;
+    right: 0;
+    margin: 2vmax;
+    background-image: url(../../icons/x-square.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s;
+}
+
+.cross:hover{
+    transform: scale(1.1);
+}
+
+.signin-box h3,
+.signin-box h2 {
+    margin: 2%;
+    color: rgb(64, 63, 63);
+}
+
+.signin-box h3 {
+    font-weight: normal;
+    color: rgb(121, 121, 121);
+    /* color: var(--main-font-color); */
+}
+
+.signin-box a {
+    color: red;
+    align-self: center;
+    font-size: small;
+    margin: 5px;
+}
+
+.signin-box form {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signin-box form input {
+    box-sizing: border-box;
+    height: 20%;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 3px;
+    border: 1px solid rgb(121, 121, 121);
+    padding: 5%;
+}
+
+.signin-box form button {
+    background-color: rgb(64, 64, 64);
+    color: white;
+    width: 100%;
+    height: 20%;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.signin-box form button:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+.signin-box .break {
+    margin: 10px;
+    color: rgb(119, 119, 119);
+    font-size: smaller;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-box .breakline {
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: rgb(119, 119, 119);
+    width: 35%;
+    height: 0.5px;
+}

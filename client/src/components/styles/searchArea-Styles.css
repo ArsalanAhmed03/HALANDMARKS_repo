@@ -1,0 +1,19 @@
+.allSearchArea{
+    display: flex;
+    position: relative;
+}
+
+.filterbutton{
+    background-color: transparent;
+    text-decoration: underline;
+    background-position: center;
+    width: 5vmax;
+    height: 5vh;
+}
+
+
+@media (max-width: 600px) {
+    .allSearchArea{
+        flex-direction: column;
+    }
+}

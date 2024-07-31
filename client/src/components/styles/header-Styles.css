@@ -1,0 +1,298 @@
+header {
+    font-family: var(--main-font-family);
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    height: 12vmin;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2%;
+    z-index: 10;
+    background-color: white;
+    border-bottom: 0.5px solid rgba(107, 107, 107, 0.295);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.135);
+}
+
+header.blurred {
+    filter: blur(2px);
+}
+
+.menubutton {
+    background-color: transparent;
+    background-image: url(../../icons/list.svg);
+    background-position: center;
+    width: 5vmax;
+    height: 5vh;
+    background-repeat: no-repeat;
+    display: none;
+}
+
+.menu {
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: rgb(1 16 44);
+    height: 100vh;
+    width: 50%;
+    transition: all .2s;
+    z-index: 100;
+}
+
+
+.cross {
+    position: absolute;
+    background-color: transparent;
+    width: 2vmax;
+    height: 2vmax;
+    top: 0;
+    right: 0;
+    margin: 2vmax;
+    background-image: url(../../icons/x-square.svg);
+    background-color: white;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.2s;
+
+}
+
+#menucross {
+    top: 0px;
+    right: 0px;
+    margin: 1vmax;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.cross:hover {
+    transform: scale(1.1);
+}
+
+.Logo,
+.SideLogo {
+    position: relative;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2.5vmin;
+}
+
+.Logo {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.SideLogo {
+    font-size: 2vmax;
+    height: 9.4vh;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.mainoptions {
+    font-size: 1.2vmax;
+    height: 10vh;
+    display: flex
+}
+
+.mainoptions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10vmax;
+}
+
+.mainoptions a:hover {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: var(--main-bg-color-transparent);
+    background-color: #c0c0c0;
+
+}
+
+.searcharea,.searcharea_side {
+    display: flex;
+    height: 6vmin;
+}
+
+.searcharea_side{
+    justify-content: center;
+    margin-bottom: 20px;
+
+}
+
+
+.searcharea input,.searcharea_side input {
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    height: 100%;
+    width: 16vw;
+    box-sizing: border-box;
+    padding-left: 5%;
+    font-size: 1.2vmax;
+    border: 0.1px solid #cdcdcd;
+    border-top-left-radius: 0.5vmax;
+    border-bottom-left-radius: 0.5vmax;
+
+}
+
+.searcharea_side input{
+    width: 80%;
+}
+
+.searcharea input:focus,.searcharea_side input:focus {
+    outline: none;
+}
+
+.searcharea button,.searcharea_side button {
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    width: 3vw;
+    background-color: transparent;
+    border: 0.1px solid #cdcdcd;
+    content: "";
+    background-image: url(../../icons/search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: .8vmax;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.searcharea_side button{
+    background-color: white;
+}
+
+.searcharea_side input{
+    width: 80%;
+}
+
+.searcharea button:hover,.searcharea_side button:hover {
+    background-size: 0.9vmax
+}
+
+
+.userenterarea {
+    height: 6vmin;
+    width: 20vmax;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center
+}
+
+.userenterarea button,
+.userenterarea a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 40%;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all .2s;
+    position: relative;
+    overflow: hidden;
+    color: #5a5a5a;
+    margin: 5%;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.userenterarea button {
+    border: 1px solid gray;
+}
+
+.userenterarea a {
+    color: white;
+    background-color: black;
+}
+
+
+.userenterarea span {
+    font-size: 1.1vmax;
+    text-decoration: underline;
+}
+
+/* .userenterarea button:before,.userenterarea a:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: left .3s;
+    z-index: -1;
+    background-color: #3c3c3c;
+    background-color: var(--main-bg-color);
+} */
+
+.userenterarea button:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.userenterarea a:hover {
+    background-color: rgb(46, 46, 46);
+}
+
+.userenterarea button:hover::before,
+.userenterarea a:hover::before {
+    left: 0
+}
+
+.sideoptions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sideoptions a {
+    display: flex;
+    align-items: center;
+    padding: 10%;
+    color: #555555;
+    color: white;
+    width: 90%;
+    height: 4vh;
+    font-weight: 600;
+    border: 0.5px solid rgb(208, 208, 208);
+    box-sizing: border-box;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+}
+
+
+.sideoptions a:hover {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff
+}
+
+@media (max-width: 600px) {
+    .mainoptions {
+        display: none
+    }
+
+    .menu {
+        left: 0
+    }
+
+    .menubutton {
+        display: block
+    }
+
+    .userenterarea button,
+    .userenterarea a {
+        font-size: 0.5rem;
+    }
+}

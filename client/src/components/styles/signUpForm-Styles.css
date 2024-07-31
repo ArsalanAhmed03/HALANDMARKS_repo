@@ -1,0 +1,73 @@
+.signUpArea {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.286); */
+    max-width: 500px;
+    width: 80vw;
+    margin: 10px;
+}
+
+.signup-container h2,.signup-container p{
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 70%;
+}
+
+.signup-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-container .input-group {
+    margin-bottom: 15px;
+}
+
+.signup-container label {
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.signup-container input,
+.signup-container select,
+.signup-container button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+}
+
+.signup-container input:focus,
+.signup-container select:focus,
+.signup-container button:focus {
+    outline: none;
+    border-color: grey;
+}
+
+.signup-container button {
+    background-color: darkgrey;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.signup-container button:not(:disabled):hover {
+    background-color: rgb(84, 84, 84);
+}

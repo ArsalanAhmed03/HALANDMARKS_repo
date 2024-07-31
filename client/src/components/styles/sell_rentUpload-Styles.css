@@ -1,0 +1,70 @@
+.PropertyUpload .Upload_div {
+    width: 90vw;
+    margin: auto;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    display: flex;
+}
+
+.PropertyUpload .Upload_div form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.PropertyUpload .Upload_div form .select_options {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2vmax;
+    margin-bottom: 2vmax;
+}
+
+.PropertyUpload .Upload_div form button {
+    background-color: transparent;
+    border: 1px solid grey;
+    width: 8vmax;
+    height: 3vmax;
+    margin-left: 1vmax;
+    margin-right: 1vmax;
+}
+
+.PropertyUpload .Upload_div form .uploadSubmitbtn {
+    margin-left: 0vmax;
+    margin-right: 0vmax;
+    font-size: 0.7rem;
+}
+
+.select_options input {
+    width: 25vmax;
+    height: 5vh;
+    box-sizing: border-box;
+    padding: 1vmax;
+    border-radius: 2px;
+    border: 1px solid rgba(128, 128, 128, 0.484);
+}
+
+.select_options input[type="file"] {
+    border: none;
+    color: black;
+}
+
+
+.select_options input::placeholder {
+    font-size: small;
+}
+
+.upload_labels {
+    font-size: 1.5vmax;
+    font-weight: 600;
+}
+
+.preview_section {
+    color: rgb(88, 88, 88);
+    width: 40vmax;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: sticky;
+    top: 0px;
+}
