@@ -56,7 +56,8 @@ const Header = ({ isLoggedIn, UserName, UserID, onLogin, onLogout }) => {
         localStorage.setItem('searchQuery', event.target.value);
     };
 
-    const onSearchEnter = () => {
+    const onSearchEnter = (event) => {
+        event.preventDefault();
         navigate('/Buy');
     };
 

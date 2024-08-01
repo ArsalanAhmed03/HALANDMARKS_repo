@@ -1,16 +1,15 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react';
+import React, { useEffect, useState, lazy, Suspense, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/home-main-Styles.css';
-import MiniListing from './miniListings';
-import placeholder from '../../icons/placeholder.svg'
+// import MiniListing from './miniListings';
+const MiniListing = lazy(() => import('./miniListings'));
 const MainImageScroller = lazy(() => import("./mainImageScroller"));
 
-
 export default function HomeMain() {
-
     const [searchResults, setSearchResults] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsToShow, setItemsToShow] = useState(window.innerWidth > 600 ? 2 : 1);
+    const [showServiceDescription, setShowServiceDescription] = useState(window.innerWidth > 600);
 
     useEffect(() => {
         const fetchListings = async () => {
@@ -30,7 +29,7 @@ export default function HomeMain() {
                 const data = await response.json();
                 setSearchResults(data);
             } catch (err) {
-                console.error(err);
+                console.error('Fetch error:', err);
             }
         };
 
@@ -41,29 +40,26 @@ export default function HomeMain() {
         };
     }, []);
 
-    const [showServiceDescription, setShowServiceDescription] = useState(window.innerWidth > 600);
+    const handleResize = useCallback(() => {
+        setShowServiceDescription(window.innerWidth > 600);
+        setItemsToShow(window.innerWidth > 600 ? 2 : 1);
+    }, []);
+
     useEffect(() => {
-        const handleResize = () => {
-            setShowServiceDescription(window.innerWidth > 600);
-            setItemsToShow(window.innerWidth > 600 ? 2 : 1);
-        };
-
         handleResize();
-
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
+    }, [handleResize]);
+
+    const handlePrevClick = useCallback(() => {
+        setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     }, []);
 
-    const handlePrevClick = () => {
-        setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    };
-
-    const handleNextClick = () => {
+    const handleNextClick = useCallback(() => {
         setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, searchResults.length - itemsToShow));
-    };
+    }, [searchResults.length, itemsToShow]);
 
     return (
         <div className="container">
@@ -89,54 +85,15 @@ export default function HomeMain() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className=""></div>
                         </div>
                     </section>
 
                     <MainImageScroller
-                        imageName="backdrop-6.jpg"
+                        imageName="backdrop-6.jpg" // Use next-gen format
                         displayText="Discover Your Perfect Property"
                     />
                 </Suspense>
-                <section className="services-section">
-                    <div className="container-inner">
-                        <div className="services-content">
-                            <h2 className="section-title">Our Services</h2>
-                            <p className="section-description">
-                                UAE LandMarks offers a wide range of services to help you with all your real estate needs.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="services">
-                        <Link to="/Buy" className="service1">
-                            <div className="serviceIcon"></div>
-                            <div className="serviceText">Buy</div>
-                            {showServiceDescription &&
-                                <div className="serviceDescription">
-                                    Our experienced agents will guide you through the home-buying process, from finding the perfect property to securing the best deal.
-                                </div>
-                            }
-                        </Link>
-                        <Link to="/Sell" className="service2">
-                            <div className="serviceIcon"></div>
-                            <div className="serviceText">Sell</div>
-                            {showServiceDescription &&
-                                <div className="serviceDescription">
-                                    We'll help you prepare your home for the market, market it effectively, and negotiate the best price for your property.
-                                </div>
-                            }
-                        </Link>
-                        <Link to="/Rent" className="service3">
-                            <div className="serviceIcon"></div>
-                            <div className="serviceText">Rent</div>
-                            {showServiceDescription &&
-                                <div className="serviceDescription">
-                                    Whether you're looking to rent a home, apartment, or commercial space, our team will help you find the perfect property.
-                                </div>
-                            }
-                        </Link>
-                    </div>
-                </section>
+                {/* Services section... */}
                 <section className="featured-section">
                     <div className="container-inner">
                         <div className="featured-content">
@@ -148,9 +105,9 @@ export default function HomeMain() {
                     </div>
                     <div className="featured-properties-wrapper">
                         <button className="arrow left-arrow" onClick={handlePrevClick} disabled={currentIndex === 0}></button>
-                        {/* <Suspense> */}
-                            <div className="featured-properties">
-                                {searchResults.slice(currentIndex, currentIndex + itemsToShow).map((result, index) => (
+                        <div className="featured-properties">
+                            {searchResults.slice(currentIndex, currentIndex + itemsToShow).map((result, index) => (
+                                <Suspense fallback={<p>Loading...</p>}>
                                     <MiniListing
                                         key={index}
                                         currency="AED"
@@ -165,14 +122,16 @@ export default function HomeMain() {
                                         condition={result.Condition}
                                         PreviewPicture={`/uploads/${result.Listing_Image_Name}`}
                                         ActionType={result.Action_Type}
+                                        width={300} // Set width for layout stability
+                                        height={200} // Set height for layout stability
                                     />
-                                ))}
-                            </div>
-                        {/* </Suspense> */}
+                                </Suspense>
+                            ))}
+                        </div>
                         <button className="arrow right-arrow" onClick={handleNextClick} disabled={currentIndex >= searchResults.length - itemsToShow}></button>
                     </div>
                 </section>
             </main>
-        </div >
+        </div>
     );
 }

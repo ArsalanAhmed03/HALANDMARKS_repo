@@ -35,9 +35,11 @@ export default function SearchResults() {
         fetchListings();
 
         return () => {
-            localStorage.removeItem('searchQuery');
+            // Remove the search query only when the component unmounts
+            // or on specific user actions if needed.
+            // localStorage.removeItem('searchQuery'); 
         };
-    }, []);
+    }, [searchQueryRef.current]);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -50,9 +52,9 @@ export default function SearchResults() {
     return (
         <div className="search_results_area">
             {searchResults.length > 0 ? (
-                searchResults.map((result, index) => (
+                searchResults.map((result) => (
                     <MiniListing
-                        key={index}
+                        key={result.Listing_ID} // Use a unique identifier
                         currency="AED"
                         amount={result.Price}
                         bedroomCount={result.No_of_bedrooms}

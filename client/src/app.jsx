@@ -9,57 +9,56 @@ import SignUp from './pages/userSignUp';
 import PropertyListing from './pages/propertyListing';
 import ContactUsPage from './pages/contactUs';
 import ScrollToTop from './components/JSX/scrollToTop';
-import './components/styles/global-Styles.css'
+import './components/styles/global-Styles.css';
 
 export default function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [UserName, setUserName] = useState("");
-    const [UserId, setUserId] = useState("");
+    const [username, setUsername] = useState("");
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
         const storedLoggedIn = localStorage.getItem('isLoggedIn');
-        const storedUserName = localStorage.getItem('UserName');
-        const storedUserId = localStorage.getItem('UserId');
+        const storedUsername = localStorage.getItem('username');
+        const storedUserId = localStorage.getItem('userId');
 
         if (storedLoggedIn) {
             setIsLoggedIn(JSON.parse(storedLoggedIn));
         }
 
-        if (storedUserName) {
-            setUserName(storedUserName);
+        if (storedUsername) {
+            setUsername(storedUsername);
         }
 
         if (storedUserId) {
-            setUserId(setUserId);
+            setUserId(storedUserId);
         }
 
     }, []);
 
-    const handleLogin = (username, UserId) => {
+    const handleLogin = (username, userId) => {
         setIsLoggedIn(true);
-        setUserName(username);
-        setUserId(UserId);
+        setUsername(username);
+        setUserId(userId);
         // Store state in localStorage
-        localStorage.setItem('isLoggedIn', true);
-        localStorage.setItem('UserName', username);
-        localStorage.setItem('UserId', UserId);
-
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+        localStorage.setItem('username', username);
+        localStorage.setItem('userId', userId);
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
-        setUserName("");
+        setUsername("");
         setUserId("");
         // Clear localStorage
         localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('UserName');
-        localStorage.removeItem('UserId');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userId');
     };
 
     return (
         <Router>
             <ScrollToTop />
-            <Layout isLoggedIn={isLoggedIn} UserName={UserName} UserId={UserId} onLogin={handleLogin} onLogout={handleLogout}>
+            <Layout isLoggedIn={isLoggedIn} username={username} userId={userId} onLogin={handleLogin} onLogout={handleLogout}>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/Buy" element={<Search />} />
@@ -74,8 +73,8 @@ export default function App() {
                     ) : (
                         <>
                             <Route path="/SignUp" element={<Home />} />
-                            <Route path="/Sell" element={<Sell_Rent Upload_Type='sale' />} />
-                            <Route path="/Rent" element={<Sell_Rent Upload_Type='rent' />} />
+                            <Route path="/Sell" element={<Sell_Rent uploadType='sale' />} />
+                            <Route path="/Rent" element={<Sell_Rent uploadType='rent' />} />
                         </>
                     )}
                 </Routes>

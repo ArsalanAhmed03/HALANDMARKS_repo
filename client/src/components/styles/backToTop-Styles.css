@@ -1,4 +1,4 @@
-.backtotop{
+.backtotop {
     position: fixed;
     bottom: 15px;
     right: 15px;
@@ -6,14 +6,13 @@
     width: 3vmax;
     height: 3vmax;
     border-radius: 10%;
-    transition: all 0.2s;
+    transition: transform 0.2s;
     background-image: url(../../icons/arrowup.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size:cover;
+    background-size: cover;
 }
 
-
-.backtotop:hover{
+.backtotop:hover {
     transform: scale(1.1);
 }

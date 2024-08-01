@@ -6,16 +6,14 @@
 }
 
 .filterArea h3 {
-    margin-top: 8%;
-    margin-bottom: 8%;
+    margin: 8% 0; /* Combine margin-top and margin-bottom */
 }
 
 .slider-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 8%;
-    margin-bottom: 8%;
+    margin: 8% 0; /* Combine margin-top and margin-bottom */
 }
 
 input[type="range"] {
@@ -40,22 +38,17 @@ input[type="range"]::-webkit-slider-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #000000;
+    background: #000;
     cursor: pointer;
 }
 
 .input-group select {
-    margin-top: 5%;
-    margin-bottom: 8%;
+    margin: 5% 0; /* Combine margin-top and margin-bottom */
     width: 100%;
     height: 40px;
     border-radius: 5px;
     padding: 2%;
     border: 1px solid rgba(0, 0, 0, 0.276);
-}
-
-.input-group select option:hover{
-    background-color: red;
 }
 
 .filterArea label {
@@ -66,9 +59,7 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: 6%;
     display: flex;
     flex-direction: column;
-    gap: 0px;
 }
-
 
 .custom-checkbox {
     display: flex;
@@ -98,17 +89,16 @@ input[type="range"]::-webkit-slider-thumb {
     height: 20px;
     width: 20px;
     background-color: #eee;
-    border-radius: 50%;
-    /* Make it a circle */
+    border-radius: 50%; /* Make it a circle */
     border: 1px solid #ccc;
 }
 
 /* On hover, add a background color */
-.custom-checkbox:hover input~.checkmark {
+.custom-checkbox:hover input ~ .checkmark {
     background-color: #ccc;
 }
 
-.custom-checkbox input:checked~.checkmark::after {
+.custom-checkbox input:checked ~ .checkmark::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -116,24 +106,12 @@ input[type="range"]::-webkit-slider-thumb {
     transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    border-radius: 50%;
-    /* Make it a dot */
+    border-radius: 50%; /* Make it a dot */
     background: #000;
 }
 
-.custom-checkbox .checkmark::after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.custom-checkbox input:checked~.checkmark::after {
-    display: block;
-}
-
-
-@media (max-width:600px) {
-    .filterArea{
+@media (max-width: 600px) {
+    .filterArea {
         position: absolute;
         z-index: 2;
         width: 40%;

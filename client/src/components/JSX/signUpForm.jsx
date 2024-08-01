@@ -26,6 +26,7 @@ export default function Signupbox() {
     });
 
     const [disableBtn, setDisableBtn] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -58,8 +59,8 @@ export default function Signupbox() {
             },
             body: JSON.stringify({ email })
         });
-        await response.json();
-        return response.ok ? '' : 'Email Already in use';
+        const result = await response.json();
+        return response.ok ? '' : result.message || 'Email already in use';
     };
 
     const handlePasswordChange = (e) => {
@@ -85,6 +86,7 @@ export default function Signupbox() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         const response = await fetch('/signup', {
             method: 'POST',
             headers: {
@@ -97,9 +99,11 @@ export default function Signupbox() {
             console.log('Signup success');
             navigate('/');
         } else {
-            console.log('Signup failed');
-            window.location.reload();
+            const result = await response.json();
+            console.log('Signup failed:', result.message);
+            setMessages((prevState) => ({ ...prevState, email: result.message || 'Signup failed. Please try again.' }));
         }
+        setIsLoading(false);
     };
 
     return (
@@ -219,7 +223,9 @@ export default function Signupbox() {
                         options={['English', 'Arabic']}
                         required
                     />
-                    <button id="signbtn" type="submit" disabled={disableBtn}>Sign Up</button>
+                    <button id="signbtn" type="submit" disabled={disableBtn || isLoading}>
+                        {isLoading ? 'Signing Up...' : 'Sign Up'}
+                    </button>
                 </form>
             </div>
         </div>
@@ -238,7 +244,7 @@ const InputField = ({ label, type, name, placeholder, value, onChange, errorMess
             onChange={onChange}
             required={required}
         />
-        {errorMessage && <div>{errorMessage}</div>}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
 );
 

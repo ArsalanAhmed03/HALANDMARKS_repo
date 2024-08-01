@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Filter from './filter';
 import SearchResults from './searchResults';
-import '../styles/searchArea-Styles.css'
+import '../styles/searchArea-Styles.css';
 
 export default function SearchArea() {
     const [showFilter, setShowFilter] = useState(window.innerWidth > 600);
@@ -11,26 +11,31 @@ export default function SearchArea() {
             setShowFilter(window.innerWidth > 600);
         };
 
-        handleResize();
-
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    const toggleFilter = () =>{
-        setShowFilter(!showFilter);
-    }
+    const toggleFilter = () => {
+        setShowFilter((prevShowFilter) => !prevShowFilter);
+    };
 
     return (
-        <>
-            <div className="allSearchArea" >
-                {!showFilter && <button className="filterbutton" onClick={toggleFilter}>Filter</button>}
-                {showFilter && <Filter toggleFilter={toggleFilter}/>}
-                <SearchResults />
-            </div>
-        </>
+        <div className="allSearchArea">
+            {!showFilter ? (
+                <button 
+                    className="filterbutton" 
+                    onClick={toggleFilter} 
+                    aria-expanded={showFilter}
+                    aria-controls="filter"
+                >
+                    Filter
+                </button>
+            ) : (
+                <Filter toggleFilter={toggleFilter} />
+            )}
+            <SearchResults />
+        </div>
     );
-};
+}
