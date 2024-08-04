@@ -113,9 +113,7 @@ header.blurred {
 .mainoptions a:hover {
     border-left: 1px solid #000;
     border-right: 1px solid #000;
-    background-color: var(--main-bg-color-transparent);
-    background-color: #c0c0c0;
-
+    backdrop-filter: blur(2px);
 }
 
 .searcharea,.searcharea_side {
@@ -131,8 +129,6 @@ header.blurred {
 
 
 .searcharea input,.searcharea_side input {
-    border-top-left-radius: 1px;
-    border-bottom-left-radius: 1px;
     height: 100%;
     width: 16vw;
     box-sizing: border-box;
@@ -141,6 +137,7 @@ header.blurred {
     border: 0.1px solid #cdcdcd;
     border-top-left-radius: 0.5vmax;
     border-bottom-left-radius: 0.5vmax;
+    background-color: rgba(255, 255, 255, 0.447);
 
 }
 

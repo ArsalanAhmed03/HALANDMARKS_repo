@@ -10,5 +10,15 @@ footer {
     font-size: 1vmax;
     color: rgb(116, 113, 113);
     background-color: #fff;
+    color: white;
+    background-color: black;
     border-top: 1px solid rgba(164, 163, 163, 0.571);
+}
+
+footer a{
+    color: white;
+}
+
+.footer-options{
+    padding-right: 3%;
 }

@@ -60,6 +60,7 @@ const Header = ({ isLoggedIn, UserName, UserID, onLogin, onLogout }) => {
         event.preventDefault();
         navigate('/Buy');
     };
+    
 
     return (
         <>

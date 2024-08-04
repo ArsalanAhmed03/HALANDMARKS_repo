@@ -97,7 +97,7 @@ app.post('/login', async (req, res) => {
 
 app.post('/api/listings', async (req, res) => {
     const searchQuery = req.body.searchQuery;
-
+    console.log(searchQuery);
     try {
         let listings;
         if (searchQuery === '') {
@@ -106,7 +106,9 @@ app.post('/api/listings', async (req, res) => {
             listings = await Listings.find({
                 $or: [
                     { Listing_Image_Name: { $regex: searchQuery, $options: 'i' } },
-                    { description: { $regex: searchQuery, $options: 'i' } }
+                    { description: { $regex: searchQuery, $options: 'i' } },
+                    { Area: { $regex: searchQuery, $options: 'i' } },
+                    { City: { $regex: searchQuery, $options: 'i' } },
                 ]
             });
         }

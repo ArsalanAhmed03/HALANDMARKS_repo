@@ -1,11 +1,12 @@
 import React from 'react';
 import SearchArea from '../components/JSX/searchArea';
 
-export default function Search() {
-
+const Search = (() => {
     return (
         <>
             <SearchArea />
         </>
-    );
-}
+    )
+});
+
+export default Search;

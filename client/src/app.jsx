@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import React, { useState, useEffect, navigate} from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './pages/home';
 import Layout from './components/JSX/layout';
 import Sell_Rent from './pages/sellRent';
@@ -24,22 +23,18 @@ export default function App() {
         if (storedLoggedIn) {
             setIsLoggedIn(JSON.parse(storedLoggedIn));
         }
-
         if (storedUsername) {
             setUsername(storedUsername);
         }
-
         if (storedUserId) {
             setUserId(storedUserId);
         }
-
     }, []);
 
     const handleLogin = (username, userId) => {
         setIsLoggedIn(true);
         setUsername(username);
         setUserId(userId);
-        // Store state in localStorage
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
         localStorage.setItem('username', username);
         localStorage.setItem('userId', userId);
@@ -49,7 +44,6 @@ export default function App() {
         setIsLoggedIn(false);
         setUsername("");
         setUserId("");
-        // Clear localStorage
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('username');
         localStorage.removeItem('userId');

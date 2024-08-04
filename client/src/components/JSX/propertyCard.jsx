@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import placeholder from '../../icons/placeholder.svg';
 import '../styles/propertyCard-Styles.css';
 
@@ -50,7 +49,9 @@ const PropertyCard = () => {
                         <p>{Product_Info.description}</p>
                     </div>
                 </div>
+                {
                 <ScheduleForm />
+                }
             </section>
         </div>
     );

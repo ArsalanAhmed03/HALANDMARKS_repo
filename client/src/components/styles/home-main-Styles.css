@@ -47,6 +47,15 @@
     background-color: white;
     border: 1px solid rgba(143, 143, 143, 0.443);
     border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.135);
+}
+
+.service1:hover,
+.service2:hover,
+.service3:hover {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    scale: 1.01;
 }
 
 .serviceText {

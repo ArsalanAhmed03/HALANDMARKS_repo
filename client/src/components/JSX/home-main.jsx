@@ -8,7 +8,7 @@ const MainImageScroller = lazy(() => import("./mainImageScroller"));
 export default function HomeMain() {
     const [searchResults, setSearchResults] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [itemsToShow, setItemsToShow] = useState(window.innerWidth > 600 ? 2 : 1);
+    const [itemsToShow, setItemsToShow] = useState(window.innerWidth > 600 ? (window.innerWidth > 800 ? (window.innerWidth > 1500 ? 4 : 3) : 2) : 1);
     const [showServiceDescription, setShowServiceDescription] = useState(window.innerWidth > 600);
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export default function HomeMain() {
 
     const handleResize = useCallback(() => {
         setShowServiceDescription(window.innerWidth > 600);
-        setItemsToShow(window.innerWidth > 600 ? 2 : 1);
+        setItemsToShow((window.innerWidth > 600 ? (window.innerWidth > 800 ? (window.innerWidth > 1500 ? 4 : 3) : 2) : 1));
     }, []);
 
     useEffect(() => {

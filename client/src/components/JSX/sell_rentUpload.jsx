@@ -141,7 +141,7 @@ export default function SellRent_Upload({ Upload_Type }) {
                         inputPlaceholder={`Enter ${field.label}`}
                         inputType={field.type}
                         min={field.min}
-                        onChange={value => handleInputChange(field.formText, value)} // Convert to underscore format for keys
+                        onChange={value => handleInputChange(field.formText, value)}
                     />
                 ))}
                 {/* Dropdown for Condition */}
