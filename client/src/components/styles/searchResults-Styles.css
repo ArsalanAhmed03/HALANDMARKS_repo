@@ -1,8 +1,0 @@
-.search_results_area{
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 80vh;
-    background-color: white;
-    width: 100%;
-    justify-content:space-around;
-}
