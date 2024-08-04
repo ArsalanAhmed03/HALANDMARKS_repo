@@ -54,7 +54,7 @@ export default function SearchResults() {
             {searchResults.length > 0 ? (
                 searchResults.map((result) => (
                     <MiniListing
-                        key={result.Listing_ID} // Use a unique identifier
+                        key={result.Listing_ID}
                         currency="AED"
                         amount={result.Price}
                         bedroomCount={result.No_of_bedrooms}

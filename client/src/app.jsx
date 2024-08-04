@@ -64,6 +64,7 @@ export default function App() {
                     <Route path="/Buy" element={<Search />} />
                     <Route path="/Listing" element={<PropertyListing />} />
                     <Route path="/ContactUs" element={<ContactUsPage />} />
+
                     {!isLoggedIn ? (
                         <>
                             <Route path="/SignUp" element={<SignUp />} />
