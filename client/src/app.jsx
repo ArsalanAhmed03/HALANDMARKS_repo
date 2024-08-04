@@ -74,8 +74,8 @@ export default function App() {
                     ) : (
                         <>
                             <Route path="/SignUp" element={<Home />} />
-                            <Route path="/Sell" element={<Sell_Rent uploadType='sale' />} />
-                            <Route path="/Rent" element={<Sell_Rent uploadType='rent' />} />
+                            <Route path="/Sell" element={<Sell_Rent Upload_Type='sale' />} />
+                            <Route path="/Rent" element={<Sell_Rent Upload_Type='rent' />} />
                         </>
                     )}
                 </Routes>

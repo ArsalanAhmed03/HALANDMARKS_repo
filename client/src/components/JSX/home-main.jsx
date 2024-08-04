@@ -87,13 +87,52 @@ export default function HomeMain() {
                             </div>
                         </div>
                     </section>
-
+                </Suspense>
+                <section className="services-section">
+                    <div className="container-inner">
+                        <div className="services-content">
+                            <h2 className="section-title">Our Services</h2>
+                            <p className="section-description">
+                                UAE LandMarks offers a wide range of services to help you with all your real estate needs.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="services">
+                        <Link to="/Buy" className="service1">
+                            <div className="serviceIcon"></div>
+                            <div className="serviceText">Buy</div>
+                            {showServiceDescription &&
+                                <div className="serviceDescription">
+                                    Our experienced agents will guide you through the home-buying process, from finding the perfect property to securing the best deal.
+                                </div>
+                            }
+                        </Link>
+                        <Link to="/Sell" className="service2">
+                            <div className="serviceIcon"></div>
+                            <div className="serviceText">Sell</div>
+                            {showServiceDescription &&
+                                <div className="serviceDescription">
+                                    We'll help you prepare your home for the market, market it effectively, and negotiate the best price for your property.
+                                </div>
+                            }
+                        </Link>
+                        <Link to="/Rent" className="service3">
+                            <div className="serviceIcon"></div>
+                            <div className="serviceText">Rent</div>
+                            {showServiceDescription &&
+                                <div className="serviceDescription">
+                                    Whether you're looking to rent a home, apartment, or commercial space, our team will help you find the perfect property.
+                                </div>
+                            }
+                        </Link>
+                    </div>
+                </section>
+                <Suspense fallback={<p>Loading...</p>}>
                     <MainImageScroller
                         imageName="backdrop-6.jpg" // Use next-gen format
                         displayText="Discover Your Perfect Property"
                     />
                 </Suspense>
-                {/* Services section... */}
                 <section className="featured-section">
                     <div className="container-inner">
                         <div className="featured-content">

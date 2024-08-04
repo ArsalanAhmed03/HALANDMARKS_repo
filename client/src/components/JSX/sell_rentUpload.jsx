@@ -7,7 +7,7 @@ export default function SellRent_Upload({ Upload_Type }) {
     const [ListingImageURL, setListingImageURL] = useState('');
     const [selectedButton, setSelectedButton] = useState('');
     const [showPreviewSection, setshowPreviewSection] = useState(window.innerWidth > 600);
-    
+
     const [formValues, setFormValues] = useState({
         Property_Type: '',
         Area: '',
@@ -61,6 +61,7 @@ export default function SellRent_Upload({ Upload_Type }) {
     };
 
     const handleSubmit = async (e) => {
+        console.log(Upload_Type);
         e.preventDefault();
         const formData = new FormData();
         Object.entries(formValues).forEach(([key, val]) => {
@@ -70,7 +71,7 @@ export default function SellRent_Upload({ Upload_Type }) {
         if (ListingImage) {
             formData.append('ListingImage', ListingImage);
         }
-        formData.append('UserID', localStorage.getItem('UserId'));
+        formData.append('UserID', localStorage.getItem('userId'));
 
         try {
             const response = await fetch('/Add_listings', {
@@ -125,15 +126,40 @@ export default function SellRent_Upload({ Upload_Type }) {
                     </div>
                 </div>
                 {/* Render input fields */}
-                {['Area', 'City', 'Size', 'Price', 'No of Bedrooms', 'No of Bathrooms', 'Description', 'Condition'].map((field, index) => (
+                {[
+                    { label: 'Area', formText: 'Area',type: 'text' },
+                    { label: 'City', formText: 'City', type: 'text' },
+                    { label: 'Size', formText: 'Size', type: 'number', min: 0 },
+                    { label: 'Price', formText: 'Price', type: 'number', min: 0 },
+                    { label: 'No of Bedrooms', formText: 'No_of_bedrooms', type: 'number', min: 0 },
+                    { label: 'No of Bathrooms', formText: 'No_of_bathrooms', type: 'number', min: 0 },
+                    { label: 'Description', formText: 'description', type: 'textarea' }
+                ].map((field, index) => (
                     <Inputdivs
                         key={index}
-                        labelText={`Enter ${field.replace(/_/g, ' ')}`}
-                        inputPlaceholder={`Enter ${field}`}
-                        inputType={field === 'description' ? 'textarea' : 'text'}
-                        onChange={value => handleInputChange(field, value)}
+                        labelText={`Enter ${field.label}`}
+                        inputPlaceholder={`Enter ${field.label}`}
+                        inputType={field.type}
+                        min={field.min}
+                        onChange={value => handleInputChange(field.formText, value)} // Convert to underscore format for keys
                     />
                 ))}
+                {/* Dropdown for Condition */}
+                <div>
+                    <div className="upload_labels">Condition</div>
+                    <div className="select_options">
+                        <select
+                            value={formValues.Condition}
+                            onChange={e => handleInputChange('Condition', e.target.value)}
+                        >
+                            <option value="">Select Condition</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="New">New</option>
+                            <option value="Renovated">Renovated</option>
+                        </select>
+                    </div>
+                </div>
                 <button className='uploadSubmitbtn' type="submit" disabled={!isFormValid}>Sell Now</button>
             </form>
             {showPreviewSection &&
