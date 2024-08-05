@@ -83,8 +83,6 @@ app.post('/login', async (req, res) => {
         console.log("No Such User Found");
         res.status(500).json({ loginSuccess: false });
     } else {
-        console.log(user[0].name);
-        console.log(password);
         res.status(200).json({
             loginSuccess: true,
             user: {
@@ -97,7 +95,6 @@ app.post('/login', async (req, res) => {
 
 app.post('/api/listings', async (req, res) => {
     const searchQuery = req.body.searchQuery;
-    console.log(searchQuery);
     try {
         let listings;
         if (searchQuery === '') {

@@ -12,6 +12,9 @@ const Header = ({ isLoggedIn, UserName, UserID, onLogin, onLogout }) => {
     const [showMainOptions, setShowMainOptions] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,9 +59,34 @@ const Header = ({ isLoggedIn, UserName, UserID, onLogin, onLogout }) => {
         localStorage.setItem('searchQuery', event.target.value);
     };
 
+    const fetchListings = async () => {
+        try {
+            const response = await fetch('/api/listings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ searchQuery: searchTerm })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const data = await response.json();
+            setSearchResults(data); 
+    
+            navigate('/Buy', { state: { searchResults: data } }); 
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const onSearchEnter = (event) => {
         event.preventDefault();
-        navigate('/Buy');
+        fetchListings();
     };
     
 

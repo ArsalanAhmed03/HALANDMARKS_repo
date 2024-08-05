@@ -143,6 +143,8 @@ header.blurred {
 
 .searcharea_side input{
     width: 80%;
+    background-color: rgb(255, 255, 255);
+
 }
 
 .searcharea input:focus,.searcharea_side input:focus {
