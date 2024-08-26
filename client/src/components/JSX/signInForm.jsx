@@ -18,7 +18,7 @@ export default function SignIn({ onClose, onLogin }) {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://halandmarks-backend.onrender.com/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
