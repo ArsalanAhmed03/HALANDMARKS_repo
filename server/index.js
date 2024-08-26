@@ -159,6 +159,12 @@ app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
 
 // mongodb://localhost:27017/RealEstate
 
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://halandmarks-repo.vercel.app', 
+}));
+
+
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Database connected");
     app.listen(port, () => {
