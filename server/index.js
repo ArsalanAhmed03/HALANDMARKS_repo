@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer')
-const port = 80;
+const port = process.env.port || 80;
 const app = express();
 const path = require('path');
 

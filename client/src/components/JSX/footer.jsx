@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/footer-Styles.css'
-import City10 from '../../images/City10.png';
 
 export default function Footer() {
   return (
