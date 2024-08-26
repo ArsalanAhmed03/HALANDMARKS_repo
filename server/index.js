@@ -4,6 +4,7 @@ const multer = require('multer')
 const port = process.env.port || 80;
 const app = express();
 const path = require('path');
+require('dotenv').config();
 
 //multer settings
 const storage = multer.diskStorage({
@@ -156,8 +157,9 @@ app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
 });
 
 
+// mongodb://localhost:27017/RealEstate
 
-mongoose.connect('mongodb://localhost:27017/RealEstate').then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Database connected");
     app.listen(port, () => {
         console.log(`The server ${port} has been connected`);
