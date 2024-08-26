@@ -61,7 +61,7 @@ const Header = ({ isLoggedIn, UserName, UserID, onLogin, onLogout }) => {
 
     const fetchListings = async () => {
         try {
-            const response = await fetch('/api/listings', {
+            const response = await fetch('https://halandmarks-repo.onrender.com/api/listings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

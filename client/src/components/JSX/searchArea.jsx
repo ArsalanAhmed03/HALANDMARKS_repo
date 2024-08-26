@@ -19,7 +19,7 @@ export default function SearchArea({ searchResults }) {
     const fetchListings = async () => {
         setLoading(true); 
         try {
-            const response = await fetch('/api/listings', {
+            const response = await fetch('https://halandmarks-repo.onrender.com/api/listings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

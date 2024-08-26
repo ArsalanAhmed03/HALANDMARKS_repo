@@ -14,7 +14,7 @@ export default function HomeMain() {
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const response = await fetch('/api/listings', {
+                const response = await fetch('https://halandmarks-repo.onrender.com/api/listings', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

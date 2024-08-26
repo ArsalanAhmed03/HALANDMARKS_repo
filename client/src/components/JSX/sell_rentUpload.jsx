@@ -74,7 +74,7 @@ export default function SellRent_Upload({ Upload_Type }) {
         formData.append('UserID', localStorage.getItem('userId'));
 
         try {
-            const response = await fetch('/Add_listings', {
+            const response = await fetch('https://halandmarks-repo.onrender.com/Add_listings', {
                 method: 'POST',
                 body: formData,
             });
