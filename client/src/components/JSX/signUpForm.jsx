@@ -87,7 +87,7 @@ export default function Signupbox() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        const response = await fetch('/signup', {
+        const response = await fetch('https://halandmarks-backend.onrender.com/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
