@@ -8,11 +8,20 @@ require('dotenv').config();
 const port = process.env.port || 80;
 const app = express();
 
+
+
 // CORS configuration
 app.use(cors({
     origin: 'https://halandmarks-repo.vercel.app',  // Your frontend URL
     methods: ['GET', 'POST'],  // Methods you want to allow
 }));
+
+const fs = require('fs');
+
+const uploadsDir = path.join(__dirname, 'Uploads');
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir);
+}
 
 // Multer settings
 const storage = multer.diskStorage({
