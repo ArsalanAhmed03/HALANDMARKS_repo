@@ -1,34 +1,37 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const multer = require('multer')
-const port = process.env.port || 80;
-const app = express();
+const multer = require('multer');
+const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
-const cors = require('cors');
+const port = process.env.port || 80;
+const app = express();
+
+// CORS configuration
 app.use(cors({
-    origin: 'https://halandmarks-repo.vercel.app',
-    methods: ['GET', 'POST'],
+    origin: 'https://halandmarks-repo.vercel.app',  // Your frontend URL
+    methods: ['GET', 'POST'],  // Methods you want to allow
 }));
 
-//multer settings
+// Multer settings
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './Uploads')
+        cb(null, './Uploads');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '_' + file.originalname)
+        cb(null, Date.now() + '_' + file.originalname);
     }
-})
+});
 
-const upload = multer({ storage })
+const upload = multer({ storage });
 
 app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Your routes
 const users = require("./models/user.model.js");
 const Listings = require("./models/Listings.modles.js");
 
@@ -37,39 +40,27 @@ app.post('/validate-email', async (req, res) => {
     const user = await users.findOne({ Email: email });
     if (user) {
         return res.status(400).json({ message: 'Email already in use' });
-    }
-    else {
+    } else {
         res.status(200).json({ message: 'Email available' });
     }
 });
 
 app.post('/signup', async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const username = req.body.fullname;
-    const PhoneNumber = req.body.phone;
-    const Emirates = req.body.emirate;
-    const City = req.body.city;
-    const Address = req.body.address;
-    const POBox = req.body.pobox;
-    const Nationality = req.body.nationality;
-    const DOB = req.body.dob;
-    const Gender = req.body.gender;
-    const PreferredLanguage = req.body.language;
+    const { email, password, fullname, phone, emirate, city, address, pobox, nationality, dob, gender, language } = req.body;
 
-    const user = users({
-        name: username,
+    const user = new users({
+        name: fullname,
         Email: email,
         Password: password,
-        PhoneNumber: PhoneNumber,
-        Emirates: Emirates,
-        City: City,
-        Address: Address,
-        POBox: POBox,
-        Nationality: Nationality,
-        DOB: new Date(DOB),
-        Gender: Gender,
-        PreferredLanguage: PreferredLanguage
+        PhoneNumber: phone,
+        Emirates: emirate,
+        City: city,
+        Address: address,
+        POBox: pobox,
+        Nationality: nationality,
+        DOB: new Date(dob),
+        Gender: gender,
+        PreferredLanguage: language
     });
 
     try {
@@ -83,10 +74,9 @@ app.post('/signup', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-
     const { email, password } = req.body;
     const user = await users.find({ Email: email, Password: password });
-    if (user.length == 0) {
+    if (user.length === 0) {
         console.log("No Such User Found");
         res.status(500).json({ loginSuccess: false });
     } else {
@@ -122,23 +112,12 @@ app.post('/api/listings', async (req, res) => {
     }
 });
 
-
 app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
-    const Action_Type = req.body.Action_Type;
-    const Property_Type = req.body.Property_Type;
+    const { Action_Type, Property_Type, Area, City, Size, Price, No_of_bedrooms, No_of_bathrooms, description, Condition, UserID } = req.body;
     const listing_image = req.file.filename;
-    const Area = req.body.Area;
-    const City = req.body.City;
-    const Size = req.body.Size;
-    const Price = req.body.Price;
-    const No_of_bedrooms = req.body.No_of_bedrooms;
-    const No_of_bathrooms = req.body.No_of_bathrooms;
-    const description = req.body.description;
-    const Condition = req.body.Condition;
-    const User_ID = req.body.UserID;
 
-    const newListing = Listings({
-        User_ID: User_ID,
+    const newListing = new Listings({
+        User_ID: UserID,
         Listing_Image_Name: listing_image,
         Property_Type: Property_Type,
         Action_Type: Action_Type,
@@ -162,15 +141,14 @@ app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
     }
 });
 
-
-// mongodb://localhost:27017/RealEstate
-
-
-mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log("Database connected");
-    app.listen(port, () => {
-        console.log(`The server ${port} has been connected`);
+// Connect to the database and start the server
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("Database connected");
+        app.listen(port, () => {
+            console.log(`The server is running on port ${port}`);
+        });
     })
-}).catch(() => {
-    console.log("Database not connected");
-});
+    .catch(() => {
+        console.log("Database not connected");
+    });
