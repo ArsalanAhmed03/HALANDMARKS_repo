@@ -6,6 +6,12 @@ const app = express();
 const path = require('path');
 require('dotenv').config();
 
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://halandmarks-repo.vercel.app',
+    methods: ['GET', 'POST'],
+}));
+
 //multer settings
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -158,12 +164,6 @@ app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
 
 
 // mongodb://localhost:27017/RealEstate
-
-const cors = require('cors');
-app.use(cors({
-    origin: 'https://halandmarks-repo.vercel.app',
-    methods: ['GET', 'POST'],
-}));
 
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
