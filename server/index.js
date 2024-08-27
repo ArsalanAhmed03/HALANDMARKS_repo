@@ -162,8 +162,7 @@ app.post('/Add_listings', upload.single("ListingImage"), async (req, res) => {
 const cors = require('cors');
 app.use(cors({
     origin: 'https://halandmarks-repo.vercel.app', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
 
