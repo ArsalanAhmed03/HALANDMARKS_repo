@@ -31,7 +31,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Your routes
 const users = require("./models/user.model.js");
 const Listings = require("./models/Listings.modles.js");
 
